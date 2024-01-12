@@ -390,14 +390,14 @@ const App = () =>
 
                           <div className='flex flex-col gap-3 w-1/3 '>
                             <div className='flex items-center gap-6 justify-center'>
-                              <h1 className='text-3xl  font-mono font-bold'>Total Spent:&#8369;</h1>
+                              <h1 className='text-3xl  font-mono font-bold'>Total Cost of Goods:&#8369;</h1>
                               <h1 className='text-3xl text-right font-mono font-bold'>{totalSpent}</h1>
                             </div>
                           </div>
 
                           <div className='flex flex-col gap-3 w-1/3 '>
                             <div className='flex items-center gap-6 justify-center'>
-                              <h1 className='text-3xl  font-mono font-bold'>Total Sales:&#8369;</h1>
+                              <h1 className='text-3xl  font-mono font-bold'>Total Revenue:&#8369;</h1>
                               <h1 className='text-3xl text-right font-mono font-bold'>{totalSale}</h1>
                             </div>
                           </div>
@@ -625,11 +625,11 @@ const App = () =>
                     <div className='max-w-7xl mx-auto'>
                       <h1 className='text-3xl font-bold text-center p-6 '>List of Sold Items (Arrange from Most Sold to Least)</h1>
                       <div className='bg-primary flex w-full mx-auto  rounded-md rounded-b-none  border-2 border-primary'>
-                        <div className='w-[20%] py-2 px-4   text-white text-2xl font-main font-bold '> Product Name</div>
+                        <div className='w-[20%] py-2 px-4 text-white text-2xl font-main font-bold '> Product Name</div>
                         <div className='w-[20%] p-2 text-center  text-white text-2xl font-main font-bold '> Category</div>
-                        <div className='w-[15%] p-2 text-center  text-white text-2xl font-main font-bold '> Selling Price</div>
+                        <div className='w-[15%] p-2 text-center  text-white text-2xl font-main font-bold '> Price Per Unit</div>
                         <div className='w-[15%] p-2 text-center  text-white text-2xl font-main font-bold '> Quantity Sold</div>
-                        <div className='w-[30%] p-2 text-center  text-white text-2xl font-main font-bold '> Total Sales per Item</div>
+                        <div className='w-[30%] p-2 text-center  text-white text-2xl font-main font-bold '> Revenue per Item</div>
 
                       </div>
                       {
@@ -640,9 +640,9 @@ const App = () =>
                         (
                           <div 
                             key={index} 
-                            className={`item-center flex w-full mx-auto border-primary border-l-2 border-b-2 border-r-2 ${index === items.length -1 ? 'rounded-b-md' : ''} ${selectedItem === item ? 'bg-tertiary' : ''} `}
+                            className={`item-center flex w-full mx-auto border-primary border-l-2 border-b-2 border-r-2 ${index === items.length -1 ? 'rounded-b-md' : ''}`}
                           >
-                            <div className={`w-[20%] p-2 text-center text-2xl font-main text-primary`}>{item.productName}</div>
+                            <div className={`w-[20%] p-2  text-2xl font-main text-primary`}>{item.productName}</div>
                             <div className={`w-[20%] p-2 text-center text-2xl font-main text-primary`}>{item.category}</div>
                             <div className={`w-[15%] p-2 text-center text-2xl font-main text-primary` }>{item.sellingPrice}</div>
                             <div className={`w-[15%] p-2 text-center text-2xl font-main text-primary`}>{item.quantitySold}</div>
@@ -650,6 +650,41 @@ const App = () =>
                           </div>
                         ))
                       }
+                      <div className='flex  justify-center gap-6 mb-10'>
+                        <div className='w-1/2 mx-auto'>
+                          <h1 className='text-3xl font-bold text-center p-6 '>Gross Income</h1>
+
+                          <div className='flex gap-1 bg-primary border-4 border-primary'>
+                            <div className='w-[50%] flex gap-1 flex-col'>
+                              <h1 className='bg-tertiary text-white text-2xl p-4 font-main'>Total Revenue</h1>
+                              <h1 className='bg-tertiary text-white text-2xl p-4 font-main'>Total Cost of Goods</h1>
+                              <h1 className='bg-tertiary text-white text-4xl p-4 font-main font-bold'>Gross Income</h1>
+                            </div>
+                            <div className='w-[60%] flex gap-1 flex-col'>
+                              <h1 className=' bg-white text-primary text-2xl p-4 font-main text-center'>{ totalSale }</h1>
+                              <h1 className=' bg-white text-primary text-2xl p-4 font-main text-center'>{ totalSpent }</h1>
+                              <h1 className=' bg-white text-primary text-4xl p-4 font-main text-center'> &#8369;{ totalSale - totalSpent }</h1>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className='w-1/2 mx-auto'>
+                          <h1 className='text-3xl font-bold text-center p-6 '>Net Income</h1>
+
+                          <div className='flex gap-1 bg-primary border-4 border-primary'>
+                            <div className='w-[50%] flex gap-1 flex-col'>
+                              <h1 className='bg-tertiary text-white text-2xl p-4 font-main'>Gross Income</h1>
+                              <h1 className='bg-tertiary text-white text-2xl p-4 font-main'>Total Cost of Expenses</h1>
+                              <h1 className='bg-tertiary text-white text-4xl p-4 font-main font-bold'>Net Income</h1>
+                            </div>
+                            <div className='w-[60%] flex gap-1 flex-col'>
+                              <h1 className=' bg-white text-primary text-2xl p-4 font-main text-center'>{ totalSale - totalSpent }</h1>
+                              <h1 className=' bg-white text-primary text-2xl p-4 font-main text-center'>{ stateExpenses.total }</h1>
+                              <h1 className=' bg-white text-primary text-4xl p-4 font-main text-center'> &#8369;{ totalSale - (stateExpenses.total + totalSpent) }</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </>
                 ) 
