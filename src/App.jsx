@@ -385,7 +385,7 @@ const App = () =>
                           onClick =  {() => {setShowSellModal(true);  newItem.sellingQuantity = 0} }
                         />
                       </div>
-                      <div className='flex flex-col justify-center items-center'>
+                      <div className='flex flex-col justify-center items-center mb-10'>
                           <h1 className='text-2xl font-bold text-center p-6 '>Summary</h1>
 
                           <div className='flex flex-col gap-3 w-1/3 '>
@@ -706,8 +706,19 @@ export default App
 const Bg = () =>
 {
   return(
-    <div className='w-full flex items-center justify-center opacity-50'>
-      <img src={Background} />
+    <div className='w-full flex flex-col items-center justify-center '>
+      <img src={Background} className='opacity-60 ' />
+      <Footer />
+    </div>
+  )
+}
+
+const Footer = () =>
+{
+
+  return(
+    <div className='w-full bg-primary text-2xl text-white p-4 font-main text-center '>
+      <a href="https://imbentaryonisherom.vercel.app/">&#169;Sherom Granada</a>
     </div>
   )
 }
